@@ -1,38 +1,84 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { citizens, type InsertCitizen, type Citizen, type SearchParams, type PaginatedResponse } from "@shared/schema";
+import { eq, ilike, and, or, sql } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getCitizens(params: SearchParams): Promise<PaginatedResponse<Citizen>>;
+  createCitizen(citizen: InsertCitizen): Promise<Citizen>;
+  createCitizens(citizensData: InsertCitizen[]): Promise<Citizen[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+export class DatabaseStorage implements IStorage {
+  async getCitizens(params: SearchParams): Promise<PaginatedResponse<Citizen>> {
+    const { query, gender, ethnicity, province, page = 1, limit = 20 } = params;
+    const offset = (page - 1) * limit;
 
-  constructor() {
-    this.users = new Map();
+    const conditions = [];
+
+    if (query) {
+      const search = `%${query}%`;
+      conditions.push(
+        or(
+          ilike(citizens.fullName, search),
+          ilike(citizens.idCard, search),
+          ilike(citizens.permanentAddress, search),
+          ilike(citizens.currentAddress, search)
+        )
+      );
+    }
+
+    if (gender) {
+      conditions.push(ilike(citizens.gender, gender));
+    }
+
+    if (ethnicity) {
+      conditions.push(ilike(citizens.ethnicity, ethnicity));
+    }
+
+    if (province) {
+      // Searching in address fields for province name
+      const search = `%${province}%`;
+      conditions.push(
+        or(
+          ilike(citizens.permanentAddress, search),
+          ilike(citizens.currentAddress, search)
+        )
+      );
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const [countResult] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(citizens)
+      .where(whereClause);
+    
+    const total = Number(countResult.count);
+
+    const data = await db
+      .select()
+      .from(citizens)
+      .where(whereClause)
+      .limit(limit)
+      .offset(offset);
+
+    return {
+      data,
+      total,
+      page,
+      limit,
+    };
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async createCitizen(insertCitizen: InsertCitizen): Promise<Citizen> {
+    const [citizen] = await db.insert(citizens).values(insertCitizen).returning();
+    return citizen;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createCitizens(citizensData: InsertCitizen[]): Promise<Citizen[]> {
+    if (citizensData.length === 0) return [];
+    return await db.insert(citizens).values(citizensData).returning();
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
