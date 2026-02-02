@@ -27,10 +27,66 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/locations", async (_req, res) => {
+    try {
+      const result = await storage.getLocations();
+      res.json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   // Seed Data
   seedDatabase();
+  seedLocations();
 
   return httpServer;
+}
+
+async function seedLocations() {
+  try {
+    const existing = await storage.getLocations();
+    if (existing.length > 0) {
+      console.log("Locations already seeded");
+      return;
+    }
+
+    console.log("Seeding locations from Excel...");
+    const excelPath = path.resolve(process.cwd(), 'attached_assets/danh_sach_khu_vuc_bo_phieu_1770004842582.xlsx');
+    
+    if (!fs.existsSync(excelPath)) {
+      console.error("Locations Excel file not found:", excelPath);
+      return;
+    }
+
+    const buf = fs.readFileSync(excelPath);
+    const wb = XLSX.read(buf);
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    const data = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[][];
+
+    const locationsToInsert = [];
+    // Based on filename "danh_sach_khu_vuc_bo_phieu", assuming structure:
+    // Row 0-2 usually headers in these templates.
+    // Let's assume name and address columns.
+    for (let i = 1; i < data.length; i++) {
+      const row = data[i];
+      if (!row || !row[1]) continue;
+
+      locationsToInsert.push({
+        name: String(row[1] || ""),
+        address: String(row[2] || ""),
+        description: String(row[3] || ""),
+      });
+    }
+
+    if (locationsToInsert.length > 0) {
+      await storage.createLocations(locationsToInsert);
+      console.log(`Seeded ${locationsToInsert.length} locations`);
+    }
+  } catch (error) {
+    console.error("Error seeding locations:", error);
+  }
 }
 
 async function seedDatabase() {

@@ -6,9 +6,20 @@ export interface IStorage {
   getCitizens(params: SearchParams): Promise<PaginatedResponse<Citizen>>;
   createCitizen(citizen: InsertCitizen): Promise<Citizen>;
   createCitizens(citizensData: InsertCitizen[]): Promise<Citizen[]>;
+  getLocations(): Promise<Location[]>;
+  createLocations(locationsData: InsertLocation[]): Promise<Location[]>;
 }
 
 export class DatabaseStorage implements IStorage {
+  async getLocations(): Promise<Location[]> {
+    return await db.select().from(locations);
+  }
+
+  async createLocations(locationsData: InsertLocation[]): Promise<Location[]> {
+    if (locationsData.length === 0) return [];
+    return await db.insert(locations).values(locationsData).returning();
+  }
+
   async getCitizens(params: SearchParams): Promise<PaginatedResponse<Citizen>> {
     const { query, gender, ethnicity, province, page = 1, limit = 20 } = params;
     const offset = (page - 1) * limit;
