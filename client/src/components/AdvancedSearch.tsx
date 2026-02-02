@@ -68,7 +68,7 @@ export function AdvancedSearch({ onSearch, currentParams }: AdvancedSearchProps)
                 <SelectTrigger>
                   <SelectValue placeholder="Chọn giới tính" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white">
                   <SelectItem value="ALL">Tất cả</SelectItem>
                   <SelectItem value="Nam">Nam</SelectItem>
                   <SelectItem value="Nữ">Nữ</SelectItem>
@@ -88,7 +88,7 @@ export function AdvancedSearch({ onSearch, currentParams }: AdvancedSearchProps)
                 <SelectTrigger>
                   <SelectValue placeholder="Chọn dân tộc" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white">
                   <SelectItem value="ALL">Tất cả</SelectItem>
                   <SelectItem value="Kinh">Kinh</SelectItem>
                   <SelectItem value="Tày">Tày</SelectItem>
