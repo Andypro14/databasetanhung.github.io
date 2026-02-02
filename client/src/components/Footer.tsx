@@ -5,9 +5,9 @@ export function Footer() {
     <footer className="bg-gray-900 text-gray-300 py-12 border-t-4 border-secondary mt-auto">
       <div className="container-custom grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="space-y-4">
-          <h3 className="text-white font-bold text-lg font-display uppercase tracking-wider">Cổng Dịch vụ công</h3>
+          <h3 className="text-white font-bold text-lg font-display uppercase tracking-wider">Cổng Thông tin công</h3>
           <p className="text-sm leading-relaxed text-gray-400">
-            Hệ thống thông tin giải quyết thủ tục hành chính, cung cấp dịch vụ công trực tuyến.
+            Hệ thống tra cứu thông tin đại biểu cử tri, cung cấp thông tin công trực tuyến.
           </p>
         </div>
         
@@ -33,13 +33,13 @@ export function Footer() {
           <h4 className="text-white font-semibold uppercase text-sm">Liên hệ</h4>
           <div className="text-sm space-y-2">
             <p>Tổng đài hỗ trợ: <span className="text-secondary font-bold">1800 1096</span></p>
-            <p>Email: dichvucong@gov.vn</p>
+            <p>Email: phuongtanhung@gov.vn</p>
           </div>
         </div>
       </div>
       
       <div className="container-custom mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
-        &copy; 2024 Cổng Dịch vụ công Quốc gia. Bản quyền thuộc về Văn phòng Chính phủ.
+        &copy; 2026 Cổng Thông tin công Phường Tân Hưng. Bản quyền thuộc về Đoàn Thanh niên Phường Tân Hưng.
       </div>
     </footer>
   );

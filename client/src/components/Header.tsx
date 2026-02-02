@@ -15,7 +15,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
       <div className="bg-primary/5 py-1 text-xs text-center text-primary font-medium border-b border-primary/10">
-        CỔNG DỊCH VỤ CÔNG QUỐC GIA - VIỆT NAM
+        CỔNG THÔNG TIN CÔNG PHƯỜNG TÂN HƯNG - VIỆT NAM
       </div>
       
       <div className="container-custom flex h-20 items-center justify-between">
@@ -23,14 +23,14 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3 group cursor-pointer">
            <div className="relative w-12 h-12 flex items-center justify-center bg-primary rounded-full shadow-lg text-white font-bold text-xl border-4 border-yellow-400 group-hover:scale-105 transition-transform duration-300">
              <div className="absolute inset-0 rounded-full border border-white/50 m-1"></div>
-             VN
+             
            </div>
            <div className="flex flex-col">
              <span className="text-xl font-bold font-display text-primary leading-none uppercase tracking-wide">
-               Dịch vụ công
+               Cổng thông tin công
              </span>
              <span className="text-sm font-medium text-gray-500 tracking-wider">
-               Quốc Gia
+               Phường Tân Hưng
              </span>
            </div>
         </Link>
