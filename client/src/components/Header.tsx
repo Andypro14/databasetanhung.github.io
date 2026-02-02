@@ -6,10 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 export function Header() {
   const navItems = [
     { label: "Trang chủ", href: "/" },
-    { label: "Thông tin và dịch vụ", href: "/services" },
-    { label: "Thanh toán trực tuyến", href: "/payment" },
-    { label: "Phản ánh kiến nghị", href: "/feedback" },
-    { label: "Hỗ trợ", href: "/support" },
+    { label: "Kiến nghị", href: "/feedback" },
   ];
 
   return (
@@ -51,9 +48,6 @@ export function Header() {
             <Bell className="w-5 h-5" />
           </Button>
           <div className="h-6 w-px bg-gray-200 mx-1"></div>
-          <Button variant="outline" className="border-primary/20 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary/50 font-medium">
-            Đăng ký
-          </Button>
           <Button className="bg-primary text-white hover:bg-primary/90 shadow-md shadow-primary/20">
             Đăng nhập
           </Button>
