@@ -66,15 +66,20 @@ async function seedLocations() {
     const data = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[][];
 
     const locationsToInsert = [];
-    // Data starts from row 2 (index 1) based on standard templates
+    // Data starts from row 2 (index 1)
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
       if (!row || !row[1]) continue;
 
+      // Based on the user description:
+      // Khu vực bỏ phiếu, Đơn vị bầu cử, Địa bàn dân cư, Địa điểm bỏ phiếu
       locationsToInsert.push({
-        name: String(row[1] || ""),
-        address: String(row[2] || ""),
-        description: String(row[3] || ""),
+        khuVuc: String(row[0] || ""),
+        donViBauCu: String(row[1] || ""),
+        diaBanDanCu: String(row[2] || ""),
+        address: String(row[3] || ""),
+        name: String(row[3] || ""), // Map address to name as fallback
+        description: "",
       });
     }
 

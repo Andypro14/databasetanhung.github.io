@@ -21,10 +21,13 @@ export const citizens = pgTable("citizens", {
 
 export const locations = pgTable("locations", {
   id: serial("id").primaryKey(),
-  name: text("name").notNull(),
+  khuVuc: text("khu_vuc"),
+  donViBauCu: text("don_vi_bau_cu"),
+  diaBanDanCu: text("dia_ban_dan_cu"),
   address: text("address").notNull(),
+  name: text("name"), // Maintaining compatibility
   description: text("description"),
-  coordinates: text("coordinates"), // Optional for manual lat/lng if needed
+  coordinates: text("coordinates"),
 });
 
 export const reports = pgTable("reports", {
