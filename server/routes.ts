@@ -53,7 +53,7 @@ async function seedLocations() {
     }
 
     console.log("Seeding locations from Excel...");
-    const excelPath = path.resolve(process.cwd(), 'attached_assets/danh_sach_khu_vuc_bo_phieu_1770004842582.xlsx');
+    const excelPath = path.resolve(process.cwd(), 'attached_assets/danh_sach_khu_vuc_bo_phieu_1770004371515.xlsx');
     
     if (!fs.existsSync(excelPath)) {
       console.error("Locations Excel file not found:", excelPath);
@@ -66,9 +66,7 @@ async function seedLocations() {
     const data = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[][];
 
     const locationsToInsert = [];
-    // Based on filename "danh_sach_khu_vuc_bo_phieu", assuming structure:
-    // Row 0-2 usually headers in these templates.
-    // Let's assume name and address columns.
+    // Data starts from row 2 (index 1) based on standard templates
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
       if (!row || !row[1]) continue;

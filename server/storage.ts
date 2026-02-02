@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { citizens, type InsertCitizen, type Citizen, type SearchParams, type PaginatedResponse } from "@shared/schema";
+import { citizens, locations, type InsertCitizen, type Citizen, type Location, type InsertLocation, type SearchParams, type PaginatedResponse } from "@shared/schema";
 import { eq, ilike, and, or, sql } from "drizzle-orm";
 
 export interface IStorage {

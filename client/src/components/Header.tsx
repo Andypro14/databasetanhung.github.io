@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 export function Header() {
   const navItems = [
     { label: "Trang chủ", href: "/" },
+    { label: "Địa điểm", href: "/locations" },
     { label: "Kiến nghị", href: "/feedback" },
   ];
 
