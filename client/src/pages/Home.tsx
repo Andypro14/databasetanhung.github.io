@@ -7,6 +7,7 @@ import { HighlightText } from "@/components/HighlightText";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, ExternalLink, Loader2, MapPin, Calendar, User as UserIcon } from "lucide-react";
+import { Link } from "wouter";
 import {
   Table,
   TableBody,
@@ -58,6 +59,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-body">
       <Header />
+
+      <div className="bg-white border-b px-6 py-2 flex items-center gap-4">
+        <Link href="/">
+          <Button variant="secondary" size="sm">Trang chủ</Button>
+        </Link>
+        <Link href="/locations">
+          <Button variant="ghost" size="sm">Địa điểm</Button>
+        </Link>
+      </div>
 
       {/* Hero Section */}
       <section className="relative bg-[#a31621] py-16 sm:py-24 overflow-hidden">
