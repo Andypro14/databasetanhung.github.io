@@ -20,16 +20,17 @@ export function Header() {
       
       <div className="container-custom flex h-20 items-center justify-between">
         {/* Logo Area */}
-        <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-           <div className="relative w-12 h-12 flex items-center justify-center bg-primary rounded-full shadow-lg text-white font-bold text-xl border-4 border-yellow-400 group-hover:scale-105 transition-transform duration-300">
-             <div className="absolute inset-0 rounded-full border border-white/50 m-1"></div>
-             
-           </div>
+        <Link href="/" className="flex items-center gap-4 group cursor-pointer">
+           <img 
+             src="/logo.png" 
+             alt="Logo Phường Tân Hưng" 
+             className="w-16 h-16 object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+           />
            <div className="flex flex-col">
-             <span className="text-xl font-bold font-display text-primary leading-none uppercase tracking-wide">
-               Cổng thông tin công
+             <span className="text-sm font-bold text-gray-500 tracking-wider uppercase">
+               Thành phố Hồ Chí Minh
              </span>
-             <span className="text-sm font-medium text-gray-500 tracking-wider">
+             <span className="text-xl font-bold font-display text-primary leading-none uppercase tracking-wide">
                Phường Tân Hưng
              </span>
            </div>

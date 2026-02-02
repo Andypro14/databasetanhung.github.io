@@ -5,28 +5,28 @@
 @tailwind utilities;
 
 :root {
-  /* Government Portal Colors */
+  /* Government Portal Colors - Based on Logo */
   --background: 0 0% 100%;
-  --foreground: 210 20% 15%; /* Dark Gray */
+  --foreground: 215 80% 20%; /* Dark Blue text */
   
-  --primary: 354 70% 50%; /* #d93025 Red */
+  --primary: 215 80% 45%; /* Logo Blue #1765AD */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 48 100% 62%; /* #ffeb3b Yellow */
-  --secondary-foreground: 210 20% 15%;
+  --secondary: 140 70% 40%; /* Logo Green #1EAD4E */
+  --secondary-foreground: 0 0% 100%;
   
-  --accent: 211 100% 50%; /* #007bff Blue */
+  --accent: 350 80% 50%; /* Bridge Red #E31E24 */
   --accent-foreground: 0 0% 100%;
   
   --muted: 210 20% 96%;
   --muted-foreground: 215 16% 47%;
   
   --card: 0 0% 100%;
-  --card-foreground: 210 20% 15%;
+  --card-foreground: 215 80% 20%;
   
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 354 70% 50%; /* Focus ring matches primary */
+  --border: 215 20% 90%;
+  --input: 215 20% 90%;
+  --ring: 215 80% 45%; /* Focus ring matches primary */
   
   --radius: 0.5rem;
   
