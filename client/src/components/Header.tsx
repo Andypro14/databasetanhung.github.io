@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 export function Header() {
   const navItems = [
     { label: "Trang chủ", href: "/" },
-    { label: "Địa điểm", href: "/locations" },
+    { label: "Địa điểm bầu cử", href: "/locations" },
     { label: "Kiến nghị", href: "/feedback" },
   ];
 
@@ -69,7 +69,6 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex flex-col gap-3 mt-4">
-                <Button variant="outline" className="w-full">Đăng ký</Button>
                 <Button className="w-full bg-primary hover:bg-primary/90">Đăng nhập</Button>
               </div>
             </nav>
